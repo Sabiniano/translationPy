@@ -11,17 +11,17 @@ class SpeechToText:
                     audio = self.recognizer.record(source)
             elif microphone_input:
                 with sr.Microphone() as source:
-                    print("Por favor, fale algo...")
+                    print("Please say aomething...")
                     audio = self.recognizer.listen(source)
             else:
-                raise ValueError("Você deve fornecer um arquivo de áudio ou ativar o modo de entrada do microfone.")
+                raise ValueError("You should select an audio file or activate your microphone.")
 
-            text = self.recognizer.recognize_google(audio, language="pt-BR")  # Reconhecimento usando o Google Web Speech API
+            text = self.recognizer.recognize_google(audio, language="pt-BR")  # Recognition using Google Web Speech API
             return text
         except sr.UnknownValueError:
-            return "Não foi possível entender a fala."
+            return "It was not possible to understand the speech."
         except sr.RequestError as e:
-            return f"Erro na requisição para o serviço de reconhecimento de fala: {str(e)}"
+            return f"Error in the request to speech recognition service: {str(e)}"
 
 # Exemplo de uso:
 if __name__ == "__main__":
